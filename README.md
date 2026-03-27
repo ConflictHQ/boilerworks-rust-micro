@@ -1,11 +1,58 @@
 # Boilerworks Rust Micro
 
-> High-performance Rust API microservice with Axum. API-key auth, no user auth. No frontend.
+> High-performance Rust microservice with Axum, SQLx, and API-key auth.
+> No frontend, no sessions -- pure API service.
 
-**Status:** Planned
+## Stack
 
-Axum-based Rust microservice for teams that need maximum throughput and minimal latency. API-key authentication, no user auth overhead. Single binary deployment, zero-cost abstractions, async-first with tokio. Ideal for high-throughput data processing, real-time APIs, infrastructure services, and performance-critical backends.
+| Layer | Technology |
+|-------|-----------|
+| Backend | Rust (Axum 0.8 + tokio) |
+| Queries | SQLx (runtime, async Postgres) |
+| Migrations | SQLx embedded |
+| Database | PostgreSQL 16 |
+| Auth | API-key (SHA256, per-key scopes) |
+| Linting | Clippy + rustfmt |
 
-## Want to help build this?
+## Getting Started
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and the [stack primer](../primers/rust-micro/PRIMER.md) for architecture and conventions.
+```bash
+# Start services
+docker compose up -d --build
+
+# Get your seed API key (shown once on first boot)
+docker compose logs api | grep "Plaintext key"
+
+# Test it
+curl http://localhost:8082/health
+curl -H "X-API-Key: bw_seed_key_change_me_in_production" http://localhost:8082/events
+```
+
+## Endpoints
+
+| Method | Path | Auth | Scope | Description |
+|--------|------|------|-------|-------------|
+| GET | /health | None | - | Health check |
+| POST | /events | API Key | events.write | Create event |
+| GET | /events | API Key | events.read | List events |
+| GET | /events/{id} | API Key | events.read | Event detail |
+| DELETE | /events/{id} | API Key | events.write | Soft delete |
+| POST | /api-keys | API Key | keys.manage | Create key |
+| GET | /api-keys | API Key | keys.manage | List keys |
+| DELETE | /api-keys/{id} | API Key | keys.manage | Revoke key |
+
+## Commands
+
+```bash
+make up        # Start Docker services
+make down      # Stop services
+make build     # Build release binary
+make test      # Run tests (needs Postgres on :5439)
+make lint      # Clippy + fmt check
+make logs      # Tail container logs
+```
+
+## Documentation
+
+- [bootstrap.md](bootstrap.md) -- Conventions and patterns
+- [CLAUDE.md](CLAUDE.md) -- Agent shim
