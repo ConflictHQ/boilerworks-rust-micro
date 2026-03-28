@@ -1,12 +1,12 @@
 use axum::{
-    Json,
     extract::{Path, Query, State},
     http::StatusCode,
+    Json,
 };
 use sqlx::PgPool;
 use uuid::Uuid;
 
-use crate::auth::{ApiKeyAuth, require_scope};
+use crate::auth::{require_scope, ApiKeyAuth};
 use crate::models::{CreateEventBody, Event, EventListParams};
 use crate::response::ApiResponse;
 

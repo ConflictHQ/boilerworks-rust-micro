@@ -1,14 +1,14 @@
 use axum::{
-    Json,
     extract::{Path, State},
     http::StatusCode,
+    Json,
 };
 use rand::Rng;
 use sha2::{Digest, Sha256};
 use sqlx::PgPool;
 use uuid::Uuid;
 
-use crate::auth::{ApiKeyAuth, require_scope};
+use crate::auth::{require_scope, ApiKeyAuth};
 use crate::models::{ApiKey, ApiKeySafe, ApiKeyWithPlaintext, CreateApiKeyBody};
 use crate::response::ApiResponse;
 
