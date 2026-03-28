@@ -394,12 +394,10 @@ async fn api_keys_create() {
     assert_eq!(resp.status(), StatusCode::CREATED);
     let body: serde_json::Value = resp.json().await.unwrap();
     assert_eq!(body["ok"], true);
-    assert!(
-        body["data"]["plaintext_key"]
-            .as_str()
-            .unwrap()
-            .starts_with("bw_")
-    );
+    assert!(body["data"]["plaintext_key"]
+        .as_str()
+        .unwrap()
+        .starts_with("bw_"));
 }
 
 #[tokio::test]

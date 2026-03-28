@@ -29,7 +29,7 @@ cargo fmt -- --check
 
 ## Code Style
 
-- `cargo fmt` for formatting (edition 2024)
+- `cargo fmt` for formatting (edition 2021)
 - `cargo clippy -- -D warnings` must pass
 - SQLx runtime queries only (no compile-time checked macros)
 - All responses use `ApiResponse<T>` wrapper

@@ -1,6 +1,6 @@
 use axum::{
-    Router,
     routing::{delete, get, post},
+    Router,
 };
 use sqlx::PgPool;
 use tower_http::cors::CorsLayer;

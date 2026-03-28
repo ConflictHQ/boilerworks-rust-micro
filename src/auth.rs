@@ -1,7 +1,7 @@
 use axum::Json;
 use axum::{
     extract::FromRequestParts,
-    http::{StatusCode, request::Parts},
+    http::{request::Parts, StatusCode},
 };
 use sha2::{Digest, Sha256};
 use sqlx::PgPool;
