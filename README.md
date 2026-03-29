@@ -47,7 +47,7 @@ curl -H "X-API-Key: bw_seed_key_change_me_in_production" http://localhost:8000/e
 make up        # Start Docker services
 make down      # Stop services
 make build     # Build release binary
-make test      # Run tests (needs Postgres on :5439)
+make test      # Run tests (needs Postgres on :5432)
 make lint      # Clippy + fmt check
 make logs      # Tail container logs
 ```
