@@ -45,7 +45,7 @@ Axum (tokio runtime)
 - `docker compose up -d --build` starts API + Postgres
 - Migrations run on app startup (no separate migration container)
 - Seed creates admin key with `['*']` scopes (logged to stdout once)
-- API exposed on host port 8082, Postgres on 5439
+- API exposed on host port 8000, Postgres on 5432
 
 ### Seed API Key
 On first boot, check container logs for the plaintext key:
@@ -56,4 +56,4 @@ docker compose logs api | grep "Plaintext key"
 ### Testing
 - Integration tests use reqwest against a real server + Postgres
 - Tests must run sequentially (`--test-threads=1`) due to shared DB
-- Default test DATABASE_URL: `postgres://postgres:postgres@localhost:5439/boilerworks`
+- Default test DATABASE_URL: `postgres://postgres:postgres@localhost:5432/boilerworks`

@@ -12,7 +12,7 @@ docker compose up -d postgres
 cargo build
 
 # Run tests
-DATABASE_URL=postgres://postgres:postgres@localhost:5439/boilerworks cargo test -- --test-threads=1
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/boilerworks cargo test -- --test-threads=1
 
 # Lint
 cargo clippy -- -D warnings

@@ -17,9 +17,9 @@ Read it before writing any code.
 
 | Endpoint | URL |
 |----------|-----|
-| Health | http://localhost:8082/health |
-| Events | http://localhost:8082/events |
-| API Keys | http://localhost:8082/api-keys |
+| Health | http://localhost:8000/health |
+| Events | http://localhost:8000/events |
+| API Keys | http://localhost:8000/api-keys |
 
 ## Commands
 
