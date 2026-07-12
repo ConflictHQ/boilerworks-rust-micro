@@ -25,9 +25,8 @@ We will acknowledge your report within 48 hours and aim to release a fix within 
 
 When deploying Boilerworks:
 
-- Change all default credentials (database, MinIO, session secret)
-- Use HTTPS in production
-- Set `NODE_ENV=production`
-- Configure `CORS_ORIGINS` to your domain only
-- Use strong Auth0 credentials
-- Review the security hardening in `bootstrap.md`
+- Set `API_KEY_SEED` to a strong, unique value (never keep the `.env.example` default) and rotate the seed admin key after first boot
+- Change the default Postgres credentials in `DATABASE_URL`
+- Use HTTPS in production (terminate TLS at a reverse proxy in front of the service)
+- Treat plaintext API keys as secrets — they are shown once at creation and only the SHA256 hash is stored
+- Grant keys the narrowest scopes needed (`events.read`, `events.write`, `keys.manage`) instead of the `*` wildcard
